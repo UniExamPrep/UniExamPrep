@@ -158,7 +158,9 @@ Rules:
       const arrayBuffer = await imageResp.arrayBuffer();
       const base64Image = Buffer.from(arrayBuffer).toString('base64');
       const fileName = '1-Pager_CheatSheet.png';
-      const filePath = `${subjectPath}/Notes/${fileName}`;
+      const parts = subjectPath.split('/').filter(Boolean);
+      const innerPath = parts.slice(2).join('/');
+      const filePath = `${innerPath}/Notes/${fileName}`;
 
       let fileSha = undefined;
       try {
@@ -244,7 +246,9 @@ Include Subject Overview, Comprehensive Topic Breakdown, Likely Exam Questions, 
 
   try {
     const fileName = 'Comprehensive_Notes.md';
-    const filePath = `${subjectPath}/Notes/${fileName}`;
+    const parts = subjectPath.split('/').filter(Boolean);
+    const innerPath = parts.slice(2).join('/');
+    const filePath = `${innerPath}/Notes/${fileName}`;
     const fileContent = Buffer.from(generatedText).toString('base64');
     let fileSha = undefined;
     try {
